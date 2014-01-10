@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<a href="index.php">BACK TO MAIN PAGE</a>
+
+<title>ARTICLE 1 file</title>
+<style>
+#main{
+			width:650px;
+		  	height:1180px;
+			background:#FFF;
+	}
+#container{
+		  	padding-top:50px;
+			width:200px;
+		  	height:200px;
+	}
+h1{
+			text-align:center;
+			font-size:24px;
+			}
+</style>
+</head>
+<script>
+$(document).ready(function(){
+	$.ajaxSetup({cache:true});
+	$.getScript('//connect.facebook.net/en_UK/all.js' , function(){
+		 	
+			FB.init({
+				appId:"541221195955616",
+				channelURL: "//localhost:8888/channel.html",
+				xfbml:true
+			});
+			
+			//console.log(FB);
+			FB.getLoginStatus(function(resp){
+				console.log(resp);
+				if(resp.status=="not_authorized"){
+					FB.login(function(resp){
+						console.log(resp);
+					});
+				}
+				else if(resp.unknown=="unknown"){
+					FB.login(function(resp){
+						
+						});
+					}
+				if (resp.status=="connected"){
+					FB.api("/me", function(resp){
+						console.log(resp);
+					});
+				}
+			});
+		
+		});
+	});
+
+</script>
+
+<body>
+<div id="main">
+<img src ="img/art1.jpg" />
+ 	<div id= "container">
+    	<div class="fb-share-button" data-href="http://mbdigitaldesigns.com/ARTICLE%203.png" data-type="button_count"></div>
+        <div class="fb-like" data-href="http://mbdigitaldesigns.com/ARTICLE%203.png" data-colorscheme="light" data-layout="standard" data-action="like" data-show-faces="true" data-send="false"></div>
+        <div class="fb-comments" data-href="http://mbdigitaldesigns.com/ARTICLE%203.png" data-numposts="5"></div>
+        <div class="fb-activity" data-site="developers.facebook.com" data-action="likes, recommends" data-colorscheme="light" data-header="true"></div>
+        <fb:login-button show-faces="true" width="400" max-rows="1"></fb:login-button> 
+	</div>
+</div>  
+<div id ='fb-root'></div>
+<script>
+ window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '541221195955616', 
+      channelUrl : '//http://localhost:8888/wk9/index.html', 
+      status     : true, 
+      cookie     : true, 
+      xfbml      : true  
+    });
+FB.Event.subscribe('auth.authResponseChange', function(response) {
+  
+    if (response.status === 'connected') {
+     
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      
+      FB.login();
+    } else {
+    
+      FB.login();
+    }
+  });
+  
+  };
+
+(function(d){
+   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement('script'); js.id = id; js.async = true;
+   js.src = "//connect.facebook.net/en_US/all.js";
+   ref.parentNode.insertBefore(js, ref);
+  }(document));
+function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Good to see you, ' + response.name + '.');
+    });
+  }
+</script>
+</body>
+</html>
